@@ -1,14 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/stylelintrc",
-  "extends": [
-    "stylelint-config-standard-scss",
-    "stylelint-config-recommended-vue/scss"
-  ],
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-recommended-vue/scss"],
   "overrides": [
     {
-      "files": [
-        "src/styles/reset.scss"
-      ],
+      "files": ["src/styles/reset.scss"],
       "rules": {
         "color-function-alias-notation": null,
         "color-function-notation": null,
@@ -23,11 +18,7 @@
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": [
-          "deep",
-          "global",
-          "slotted"
-        ]
+        "ignorePseudoClasses": ["deep", "global", "slotted"]
       }
     ]
   }
