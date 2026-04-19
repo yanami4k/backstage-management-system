@@ -1,3 +1,39 @@
 // 存放scss全局变量
 
-$color: red;
+// 左侧的导航区宽度
+$base-menu-width: 260px;
+
+//顶部面包屑导航高度
+$base-tabbar-height: 70px;
+
+// 滚动条外观设置
+::-webkit-scrollbar{
+    width: 10px;
+}
+// 滚动条滚动轨迹样式
+::-webkit-scrollbar-track{
+    color: gray;
+}
+::-webkit-scrollbar-thumb{
+    width: 10px;
+}
+
+// logo容器高度
+$base-logo-height: 60px;
+
+// logo文字大小
+$base-logo-title-fontSize: 20px;
+
+// 混入半透明组件效果
+@mixin glass(
+  $bg: rgba(255, 255, 255, 0.12),
+  $blur: 5px,
+  $border: rgba(255, 255, 255, 0.18),
+  $shadow: 0 8px 24px rgba(0, 0, 0, 0.08),
+) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+  box-shadow: $shadow;
+}

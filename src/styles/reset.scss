@@ -1,3 +1,4 @@
+// 只重置“没有 class 的原生表单元素
 * {
   box-sizing: border-box;
   background-repeat: no-repeat;
@@ -81,18 +82,12 @@ a {
   outline: 0;
 }
 
-button,
-input,
-select,
-textarea {
+:where(button, input, select, textarea):not([class]) {
   margin: 0;
   font-size: inherit;
 }
 
-button,
-html [type='button'],
-[type='reset'],
-[type='submit'] {
+:where(button, html [type='button'], [type='reset'], [type='submit']):not([class]) {
   padding: 0;
   border: 0;
   color: inherit;
@@ -107,7 +102,7 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
-input {
+input:not([class]) {
   padding: 0;
   line-height: normal;
 
@@ -124,7 +119,7 @@ input {
   }
 }
 
-[type='number'] {
+[type='number']:not([class]) {
   -moz-appearance: textfield;
 
   &::-webkit-inner-spin-button,
@@ -135,7 +130,7 @@ input {
   }
 }
 
-[type='search'] {
+[type='search']:not([class]) {
   -webkit-appearance: textfield;
 
   &::-webkit-search-cancel-button,
@@ -144,13 +139,13 @@ input {
   }
 }
 
-textarea {
+textarea:not([class]) {
   overflow: auto;
   resize: none;
   -webkit-appearance: none;
 }
 
-select {
+select:not([class]) {
   -webkit-appearance: none;
   background-color: #fff;
 }

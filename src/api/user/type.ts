@@ -7,7 +7,10 @@ export interface LoginForm {
 //定义登录接口返回数据类型
 export interface LoginResponseData {
   code: number
-  data: { token: string }
+  data: {
+    token?: string
+    message?: string
+  }
 }
 
 interface UserInfo {
