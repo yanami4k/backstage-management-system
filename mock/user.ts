@@ -5,7 +5,7 @@ function createUserList() {
   return [
     {
       userId: 1,
-      avatar: '',
+      avatar: '/avatar.gif',
       username: 'admin',
       password: '000000',
       desc: '平台管理员',
@@ -15,7 +15,7 @@ function createUserList() {
     },
     {
       userId: 2,
-      avatar: '',
+      avatar: '/public/avatar.gif',
       username: 'system',
       password: '000001',
       desc: '系统管理员',

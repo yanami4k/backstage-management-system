@@ -1,6 +1,5 @@
 // 入口文件
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 
 import 'element-plus/dist/index.css'
 import ElementPlus from 'element-plus'
@@ -21,9 +20,11 @@ import router from './router'
 // 引入vue3-lottie
 import Lottie from 'vue3-lottie'
 
+import './permission'
+
 const app = createApp(App)
 
-app.use(createPinia())
+
 // 注册ElementPlus插件
 app.use(ElementPlus, {
   locale: zhCn,

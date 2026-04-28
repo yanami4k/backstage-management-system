@@ -5,24 +5,28 @@
         <template v-if="!item.children?.length">
             <el-menu-item :index="item.path" v-if="!item.meta.hidden" @click="goRoute">
                 <!-- 没有子路由的一级路由 -->
+                <el-icon>
+                    <component :is="item.meta.icon"></component>
+                </el-icon>
                 <template #title>
                     <!-- component标签，加载路由元信息中对应的图标 -->
-                    <el-icon>
-                        <component :is="item.meta.icon"></component>
-                    </el-icon>
+
                     <span>{{ item.meta.title }}</span>
+
                 </template>
             </el-menu-item>
         </template>
 
         <template v-else-if="item.children.length === 1">
-            <el-menu-item :index="item.children[0].path" v-if="!item.children[0].meta.hidden">
+            <el-menu-item :index="item.children[0].path" v-if="!item.children[0].meta.hidden" @click="goRoute">
                 <!-- 有且只有一个子路由的一级路由 -->
+                <el-icon>
+                    <component :is="item.children[0].meta.icon"></component>
+                </el-icon>
                 <template #title>
-                    <el-icon>
-                        <component :is="item.children[0].meta.icon"></component>
-                    </el-icon>
+
                     <span>{{ item.children[0].meta.title }}</span>
+
                 </template>
             </el-menu-item>
         </template>
@@ -33,7 +37,9 @@
                 <el-icon>
                     <component :is="item.meta.icon"></component>
                 </el-icon>
+
                 <span>{{ item.meta.title }}</span>
+
             </template>
             <Menu :menuList="item.children"></Menu>
         </el-sub-menu>
@@ -43,13 +49,15 @@
 <script setup lang='ts'>
 // 引入路由器为菜单点击事件回调进行编程式路由导航
 import { useRouter } from 'vue-router';
+
 // 获取父组件传递来的全部路由数组
 defineProps(['menuList'])
+
 
 let $router = useRouter()
 
 // 点击菜单的回调
-const goRoute = (vc:{ index: string }) => {
+const goRoute = (vc: { index: string }) => {
     // 路由跳转
     $router.push(vc.index)
 }

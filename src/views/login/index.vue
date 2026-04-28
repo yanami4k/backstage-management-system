@@ -32,7 +32,7 @@ import { User, Lock } from '@element-plus/icons-vue';
 import lottie1 from '@/assets/Lottie/operation.json'
 import { reactive, ref } from 'vue';
 import { useUserStore } from '@/stores/modules/user'
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { ElNotification } from 'element-plus';
 import { getTime } from '@/utils/getTime';
 
@@ -44,27 +44,29 @@ type ValidatorCallback = (error?: Error) => void
 // 获取路由器
 let $router = useRouter()
 
+let $route = useRoute()
+
 // 定义变量控制按钮加载效果
 let loading = ref(false)
 
 // 定义变量：表单数据
-let loginForm = reactive({ username: '', password: '' })
+let loginForm = reactive({ username: 'admin', password: '111111' })
 let userStore = useUserStore()
 
 // 获取el-form组件实例
 let loginForms = ref()
 
 // 自定义校验规则函数
-const validatorUserName = ( _rule:FormItemRule,value:string,callback:ValidatorCallback) => {
-  if(value.length>=5){
+const validatorUserName = (_rule: FormItemRule, value: string, callback: ValidatorCallback) => {
+  if (value.length >= 5) {
     callback()
   } else {
     callback(new Error('账号长度至少五位'))
   }
 }
 
-const validatorPassword = ( _rule:FormItemRule,value:string,callback:ValidatorCallback) => {
-  if(value.length>=6){
+const validatorPassword = (_rule: FormItemRule, value: string, callback: ValidatorCallback) => {
+  if (value.length >= 6) {
     callback()
   } else {
     callback(new Error('密码长度至少六位'))
@@ -72,7 +74,7 @@ const validatorPassword = ( _rule:FormItemRule,value:string,callback:ValidatorCa
 }
 
 // 定义表单校验规则配置对象
-const rules:FormRules = {
+const rules: FormRules = {
   username: [
     // 自定义校验规则
     { validator: validatorUserName, trigger: 'change' }
@@ -92,10 +94,20 @@ const login_callback = async () => {
   try {
     // promise成功继续执行try内部
     await userStore.userLogin(loginForm)
+
+    // 编程式导航,判断登陆时，路由路径中是否有query参数，如果有就往query参数跳转，没有就去首页
+    // 类型收窄：如果 redirect 是数组，取第一个
+    // 如果不是数组，就直接用
+    // 最后如果没有值，就回到 '/'
+    const redirect = Array.isArray($route.query.redirect)
+      ? $route.query.redirect[0]
+      : $route.query.redirect
+
+    $router.push({ path: redirect || '/' })
+
     // 加载效果关闭
     loading.value = false
-    // 编程式导航，跳转首页
-    $router.push('/')
+
     ElNotification({
       type: 'success',
       message: '欢迎回来',
@@ -140,7 +152,7 @@ const login_callback = async () => {
   //调整登录面板位置
   transform: translate(3%, 5%);
   width: 80%;
-  @include glass($bg: rgba(255, 255, 255, 0.2),$border:1px solid rgba(148, 163, 184, 0.16),);
+  @include glass($bg: rgba(255, 255, 255, 0.2), $border: 1px solid rgba(148, 163, 184, 0.16), );
   backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 18px 22px;

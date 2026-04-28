@@ -1,12 +1,14 @@
 <template>
     <div class="layout-container">
         <!-- 左侧导航区 -->
-        <div class="layout-slider">
+        <!-- { fold: LayOutSettingStore.fold ? true : false }: fold是否为真控制该标签是否又"fold"这个类名-->
+        <div class="layout-slider" :class="{ fold: LayOutSettingStore.fold }">
             <Logo></Logo>
             <!-- 展示左侧导航区，使用el+的scrollbar组件 -->
             <el-scrollbar class="scollbar">
                 <!-- 菜单组件，根据路由动态生成菜单 -->
-                <el-menu class="menu-root">
+                <!-- default-active:页面展示时默认激活页面的index -->
+                <el-menu  :collapse="LayOutSettingStore.fold" class="menu-root" :default-active="$route.path">
                     <Menu :menuList="userStore.menuRoutes" />
                 </el-menu>
             </el-scrollbar>
@@ -14,7 +16,9 @@
         <!-- 两层flex布局，顶部导航,内容展示区域由第二层：layout-right控制 -->
         <div class="layout-right">
             <!-- 顶部导航  -->
-            <div class="layout-tabbar"></div>
+            <div class="layout-tabbar">
+                <Tabbar></Tabbar>
+            </div>
             <!-- 内容展示区域 -->
             <div class="layout-main">
                 <Main></Main>
@@ -24,17 +28,40 @@
 </template>
 
 <script setup lang='ts'>
+//引入路由对象
+import { useRoute } from 'vue-router';
 //引入左侧导航区logo子组件
 import Logo from '@/layout/logo/index.vue'
 //引入菜单组件
 import Menu from '@/layout/menu/index.vue'
-//获取用户相关的小仓库
+//引入用户相关的小仓库
 import { useUserStore } from '@/stores/modules/user';
+//引入layout配置仓库
+import useLayOutSettingStore from '@/stores/modules/setting';
+
 //右侧内容展示区
 import Main from './main/index.vue'
+//引入顶部导航区
+import Tabbar from './tabbar/index.vue';
 
+
+//获取用户相关的小仓库
 let userStore = useUserStore()
 
+//获取layout配置仓库
+let LayOutSettingStore = useLayOutSettingStore()
+
+
+//获取路由对象
+let $route = useRoute()
+
+</script>
+
+<script lang="ts">
+//一级组件layout命名
+export default {
+    name: 'Layout'
+}
 </script>
 
 <style scoped lang="scss">
@@ -59,6 +86,18 @@ let userStore = useUserStore()
     width: $base-menu-width;
     height: 100vh;
     @include glass($bg: rgba(37, 44, 58, 0.22));
+    transition: all 0.3s;
+
+    .scollbar {
+        flex: 1;
+        width: $base-menu-width;
+    }
+
+    &.fold {
+        width: $base-menu-folded-width;
+
+    }
+
 }
 
 .scollbar {
@@ -75,6 +114,7 @@ let userStore = useUserStore()
 .layout-tabbar {
     height: $base-tabbar-height;
     @include glass($bg: rgba(37, 44, 58, 0.22));
+    color: azure;
 }
 
 .layout-main {
