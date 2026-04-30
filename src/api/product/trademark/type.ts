@@ -1,10 +1,5 @@
-// 后端统一响应格式
-// 所有接口返回的 JSON 最外层都是这个结构
-export interface ResponseData {
-    code: number,
-    message: string,
-    ok: boolean
-}
+// 引入返回数据类型通用接口
+import type { ResponseData } from '@/api/type'
 
 // 单个品牌的数据类型
 export interface TradeMark {

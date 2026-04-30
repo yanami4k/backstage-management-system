@@ -1,16 +1,10 @@
-// 定义用户相关数据的ts类型
+// 引入返回数据类型通用接口
+import type { ResponseData } from '@/api/type'
 
 // 用户登录接口携带参数的ts类型
 export interface LoginFormData {
   username: string
   password: string
-}
-
-// 定义全部接口返回数据都拥有的ts类型
-export interface ResponseData {
-  code: number,
-  message: string,
-  ok: boolean
 }
 
 // 定义登录接口返回数据类型
@@ -29,12 +23,4 @@ export interface UserInfoResponseData extends ResponseData {
   }
 }
 
-//定义服务器返回用户信息相关的数据类型
-interface User {
 
-}
-
-export interface UserResponseData {
-  code: number
-  data: User
-}
