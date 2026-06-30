@@ -1,18 +1,5 @@
 import type { ResponseData } from "@/api/type";
 
-// 属性分类对象ts类型
-export interface Category {
-  id: number | string,
-  name: string,
-  category1Id?: number,
-  category2Id?: number
-}
-
-// 相应属性分类列表接口的返回类型
-export interface CategoryResponseData extends ResponseData {
-  data: Category[]
-}
-
 // 属性值对象ts类型（包含于属性对象）
 export interface AttrValue {
   id?: number,         // 该属性值id,新增时可不传，更新时必须传

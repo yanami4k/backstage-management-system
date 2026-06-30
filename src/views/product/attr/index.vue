@@ -82,11 +82,12 @@
 
 <script setup lang='ts'>
 // 引入分类数据获取接口方法
-import { reqGetCategory1, reqGetCategory2, reqGetCategory3 } from '@/api/product/attr';
+import { reqGetCategory1, reqGetCategory2, reqGetCategory3 } from '@/api/product/category'
 import { onMounted, ref, watch, reactive, nextTick } from 'vue';
 
 // 引入属性相关数据ts类型
-import type { CategoryResponseData, Attr, AttrValue } from '@/api/product/attr/type';
+import type { Attr, AttrValue } from '@/api/product/attr/type';
+import type { CategoryResponseData } from '@/api/product/category/type';
 
 // 引入获取当前属性与属性值数据方法
 import { reqGetAttrlist, reqUpdateAttr, reqDeleteAttr } from '@/api/product/attr';
