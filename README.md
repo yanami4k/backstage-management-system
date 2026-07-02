@@ -196,10 +196,3 @@ pnpm build
 pnpm type-check    # TypeScript 类型检查
 pnpm lint          # ESLint + Oxlint + Stylelint
 ```
-
-## 设计风格
-
-- **暗色主题**：侧边栏与内容区使用暗色渐变底色 + 玻璃磨砂效果
-- **统一混入**：全局 `@include glass()` mixin，一致化的玻璃态视觉
-- **渐变文字**：数据大屏标题使用紫蓝青渐变动画
-- **响应式图标**：`vite-plugin-svg-icons` 管理 SVG 图标库
