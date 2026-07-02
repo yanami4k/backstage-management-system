@@ -68,23 +68,22 @@ export default {
 .layout-container {
     display: flex;
     width: 100%;
-    height: 100vh;
-    background-image: url(@/assets/images/layout_backgound.jpeg);
-    background-size: cover;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0f1f 0%, #0d1528 50%, #101a35 100%);
 }
 
 .layout-right {
-    flex: 1; //吃掉侧边栏剩余宽度
+    flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 
 .layout-slider {
     display: flex;
     flex-direction: column;
     width: $base-menu-width;
-    height: 100vh;
+    height: 100%;
     @include glass($bg: rgba(37, 44, 58, 0.22));
     transition: all 0.3s;
 

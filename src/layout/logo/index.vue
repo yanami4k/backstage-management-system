@@ -1,7 +1,6 @@
 <template>
     <div class="logo">
-        <img :src="setting.logo" v-if="setting.logoIsHidden">
-        <!-- 给title加上淡入延迟，菜单展开时文字不会乱跑 -->
+        <SvgIcon name="vue" width="36px" height="36px" v-if="setting.logoIsHidden"/>
         <transition name="title-fade">
             <p v-show="!LayOutSettingStore.fold">{{ setting.title }}</p>
         </transition>
@@ -9,10 +8,9 @@
 </template>
 
 <script setup lang='ts'>
-// 引入logo与标题的配置文件
 import setting from '@/setting'
-// 引入layout仓库fold属性
 import useLayOutSettingStore from '@/stores/modules/setting';
+import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 
 let LayOutSettingStore = useLayOutSettingStore()
 
@@ -33,11 +31,6 @@ export default {
     padding: 10px;
     margin-top: 10px;
     border-bottom: #ffffff2e 2px solid;
-
-    img {
-        width: 40px;
-        height: 40px;
-    }
 
     p {
         font-size: $base-logo-title-fontSize;
