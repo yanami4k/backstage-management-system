@@ -12,7 +12,7 @@ enum API {
 }
 
 export const reqAllRole = (page: number, limit: number, roleName: string) =>
-  request.get<ResAllRoleData>(API.ALLROLE_URL + `${page}/${limit}/?roleName=${roleName}`)
+  request.get<ResAllRoleData>(API.ALLROLE_URL + `${page}/${limit}`, { params: { roleName } })
 
 export const reqAddOrUpdate = (data: RoleData) => {
   if (data.id) {
@@ -26,7 +26,7 @@ export const reqRolePermission = (roleId: number) =>
   request.get<ResMenuData>(API.ROLEPERMISSION + roleId)
 
 export const reqSetPermission = (roleId: number, permissionId: number[]) =>
-  request.post<ResponseData>(API.SETPERMISSION_URL + `?roleId=${roleId}&permissionId=${permissionId}`)
+  request.post<ResponseData>(API.SETPERMISSION_URL, null, { params: { roleId, permissionId: permissionId.join(',') } })
 
 export const reqRemovePermission = (id: number) =>
   request.delete<ResponseData>(API.DELPERMISSION_URL + id)

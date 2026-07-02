@@ -13,7 +13,7 @@ enum API {
 }
 
 export const reqUserInfo = (page: number, limit: number, username: string) =>
-  request.get<ResUserData>(API.ALLUSER_URL + `${page}/${limit}/?username=${username}`)
+  request.get<ResUserData>(API.ALLUSER_URL + `${page}/${limit}`, { params: { username } })
 
 export const reqAddOrUpdateUser = (data: User) => {
   if (data.id) {
