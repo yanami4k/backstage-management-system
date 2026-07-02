@@ -118,9 +118,9 @@ export default {
 }
 
 .layout-main {
-    flex: 1; // 吃掉顶部导航剩余高度
+    flex: 1;
     padding: 20px;
-    overflow: auto; // 添加滚动条
+    overflow-y: auto;
     @include glass($bg: rgba(37, 44, 58, 0.22), $blur: 1px);
 }
 
