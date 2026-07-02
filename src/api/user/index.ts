@@ -11,10 +11,10 @@ enum API {
 // 暴露请求方法
 
 // 用户登录接口方法
-export const reqLogin = (data: LoginFormData) => request.post<any,LoginResponseData>(API.LOGIN_URL, data)
+export const reqLogin = (data: LoginFormData) => request.post<LoginResponseData>(API.LOGIN_URL, data)
 
 // 获取用户信息接口方法
-export const reqUserInfo = () => request.get<any,UserInfoResponseData>(API.USERINFO_URL)
+export const reqUserInfo = () => request.get<UserInfoResponseData>(API.USERINFO_URL)
 
 // 退出登录
-export const reqLogout = () => request.post<any,any>(API.LOGOUT_URL)
+export const reqLogout = () => request.post(API.LOGOUT_URL)
